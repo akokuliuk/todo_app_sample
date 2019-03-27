@@ -3,7 +3,7 @@ package akokuliuk.todoapp.domain.errors
 import java.lang.Error
 
 
-sealed class RepositoryError : Error {
+sealed class RemoteError : Error {
 
     constructor() : super()
     constructor(message: String?) : super(message)
@@ -11,4 +11,4 @@ sealed class RepositoryError : Error {
     constructor(cause: Throwable?) : super(cause)
 }
 
-class ConnectivityError(message: String? = null) : RepositoryError(message)
+class ConnectivityError(message: String? = null) : RemoteError(message)

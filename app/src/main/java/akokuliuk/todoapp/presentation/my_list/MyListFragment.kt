@@ -38,21 +38,23 @@ class MyListFragment : FluxFragment<MyListViewModel, MyListComponent>() {
         taskList.setController(controller)
     }
 
+    /**
+     * Update UI state here
+     */
     internal fun dispatchState(state: MyListState) {
         noTasksLabel.visibility = if (state.showNoTasksLabel) View.VISIBLE else View.GONE
         taskList.visibility = if (state.tasks?.isNotEmpty() == true) View.VISIBLE else View.GONE
 
         controller.buildWithModels {
             state.tasks?.filter { !it.isDone }.takeIf { !it.isNullOrEmpty() }?.let {
-                attachTaskGroup("active_tasks", "Active tasks")
+                attachTaskGroup("active_tasks", resources.getString(R.string.screen__my_list__active_tasks_header))
                 it.forEach { task -> attachTask(task) }
             }
 
             state.tasks?.filter { it.isDone }.takeIf { !it.isNullOrEmpty() }?.let {
-                attachTaskGroup("completed_tasks", "Completed tasks")
+                attachTaskGroup("completed_tasks", resources.getString(R.string.screen__my_list__completed_tasks_header))
                 it.forEach { task -> attachTask(task) }
             }
-
         }
     }
 
@@ -63,9 +65,10 @@ class MyListFragment : FluxFragment<MyListViewModel, MyListComponent>() {
             .description(task.note)
             .done(task.isDone)
             .onClick { _ ->
+                viewModel.onTaskClick(task)
             }
             .onCheckedChanged {
-
+                viewModel.setTaskDone(task, it)
             }
             .addTo(this)
     }
@@ -77,6 +80,9 @@ class MyListFragment : FluxFragment<MyListViewModel, MyListComponent>() {
             .addTo(this)
     }
 
+    /**
+     * Subscribe to the state updates
+     */
     override fun onResume() {
         super.onResume()
         viewModel.bindState {

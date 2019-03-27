@@ -3,6 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.apollographql.android'
 
+def Properties properties = new Properties()
+properties.load(project.rootProject.file("local.properties").newDataInputStream())
 
 android {
     compileSdkVersion 28
@@ -13,6 +15,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "API_KEY", "\"${properties.getProperty('app.api_key')}\""
+        buildConfigField "String", "API_URL", "\"${properties.getProperty('app.api_url')}\""
     }
 
     compileOptions {
@@ -56,6 +61,7 @@ dependencies {
 
     implementation 'com.apollographql.apollo:apollo-runtime:1.0.0-alpha5'
     implementation 'com.squareup.okhttp3:okhttp:3.14.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.14.0'
     implementation 'javax.annotation:jsr250-api:1.0'
 
     testImplementation 'junit:junit:4.12'

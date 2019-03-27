@@ -12,8 +12,8 @@ interface MyListState : BaseScreenState {
 
 
 data class MyListMutableState(
-    override var showNoTasksLabel: Boolean,
-    override var tasks: List<Task>?
+    override var showNoTasksLabel: Boolean = false,
+    override var tasks: List<Task>? = null
 ) : BaseScreenMutableState(), MyListState {
 
     @Suppress("UNCHECKED_CAST")

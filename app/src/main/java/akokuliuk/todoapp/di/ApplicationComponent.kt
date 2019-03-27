@@ -8,7 +8,7 @@ import javax.inject.Singleton
 
 
 @Singleton
-@Component
+@Component(modules = [TodoApp::class])
 interface ApplicationComponent {
     fun provideMyListComponent(module: MyListFragment): MyListComponent
 }
