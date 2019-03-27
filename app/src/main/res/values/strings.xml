@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TodoApp</string>
+
+    <string name="screen__my_list__no_tasks_label">There are no tasks for today</string>
 </resources>

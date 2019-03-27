@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="my_list__no_tasks_label_top_margin">28dp</dimen>
+</resources>

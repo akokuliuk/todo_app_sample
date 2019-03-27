@@ -1,30 +1,29 @@
 package akokuliuk.todoapp.presentation.activity
 
 import akokuliuk.todoapp.R
-import akokuliuk.todoapp.utils.android.ViewModelFactory
-import akokuliuk.todoapp.utils.rx.AppSchedulers
+import akokuliuk.todoapp.presentation.my_list.MyListFragment
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : AppCompatActivity() {
 
-    private val viewModel by lazy {
-        ViewModelFactory.provideViewModel(this, MainActivityViewModel::class.java) {
-            MainActivityViewModel()
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity__main)
+
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_frame, MyListFragment())
+                .commit()
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    companion object {
 
-        viewModel.bindState {
-            it.observeOn(AppSchedulers.main)
-                .subscribe {
-                    findViewById<TextView>(R.id.text).text = it.title
-                }
-        }
+        /**
+         * Dirty hack to allow instrumentation tests to change fragment.
+         * Such stuff should be handled by some navigation manager
+         */
+        const val FragmentFrameId = R.id.fragment_frame
     }
 }

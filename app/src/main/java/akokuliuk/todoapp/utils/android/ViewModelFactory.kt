@@ -29,7 +29,7 @@ object ViewModelFactory {
                 }
             }
         }).get(viewModelClass).apply {
-            if(this is LifecycleObserver) {
+            if (this is LifecycleObserver) {
                 activity.lifecycle.addObserver(this)
             }
         }
@@ -51,9 +51,15 @@ object ViewModelFactory {
                 }
             }
         }).get(viewModelClass).apply {
-            if(this is LifecycleObserver) {
+            if (this is LifecycleObserver) {
                 fragment.lifecycle.addObserver(this)
             }
+        }
+    }
+
+    fun detachFromLifecycle(viewModel: ViewModel, fragment: Fragment) {
+        if (viewModel is LifecycleObserver) {
+            fragment.lifecycle.removeObserver(viewModel)
         }
     }
 }

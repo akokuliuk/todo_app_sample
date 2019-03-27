@@ -1,0 +1,3 @@
+mutation GenerateApiToken($apiKey: String!) {
+  generateAccessToken(apiKey:$apiKey, userName:"USER NAME")
+}

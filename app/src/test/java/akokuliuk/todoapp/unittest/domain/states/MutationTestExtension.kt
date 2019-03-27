@@ -1,7 +1,6 @@
 package akokuliuk.todoapp.unittest.domain.states
 
 import akokuliuk.todoapp.presentation.base.BaseScreenMutableState
-import akokuliuk.todoapp.presentation.base.BaseScreenState
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 

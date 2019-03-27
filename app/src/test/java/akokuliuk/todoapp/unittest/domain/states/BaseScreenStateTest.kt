@@ -1,18 +1,14 @@
 package akokuliuk.todoapp.unittest.domain.states
 
-import akokuliuk.todoapp.presentation.activity.MainActivityMutableState
-import akokuliuk.todoapp.presentation.base.BaseScreenMutableState
-import akokuliuk.todoapp.presentation.base.BaseScreenState
-import junit.framework.Assert.assertFalse
-import junit.framework.Assert.assertTrue
+import akokuliuk.todoapp.presentation.my_list.MyListMutableState
 import org.junit.Test
 
 
-class BaseScreenStateTest{
+class BaseScreenStateTest {
 
     @Test
-    fun mutateCreatesNewInstance(){
-        MainActivityMutableState("Hello").checkMutation()
+    fun mutateCreatesNewInstance() {
+        MyListMutableState(false, null).checkMutation()
     }
 
 }
