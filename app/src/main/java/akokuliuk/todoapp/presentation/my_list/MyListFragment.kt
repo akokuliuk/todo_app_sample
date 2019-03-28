@@ -58,7 +58,8 @@ class MyListFragment : FluxFragment<MyListViewModel, MyListComponent>() {
 
         controller.buildWithModels {
             state.tasks?.filter { !it.isDone }.takeIf { !it.isNullOrEmpty() }?.let {
-                attachTaskGroup("active_tasks", resources.getString(R.string.screen__my_list__active_tasks_header))
+                attachTaskGroup("active_tasks",
+                    resources.getString(R.string.screen__my_list__active_tasks_header))
                 it.forEach { task -> attachTask(task) }
             }
 
