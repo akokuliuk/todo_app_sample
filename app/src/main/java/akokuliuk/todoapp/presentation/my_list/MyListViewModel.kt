@@ -37,8 +37,18 @@ class MyListViewModel @Inject constructor(
     }
 
 
+    //TODO: For debug purpose only
     fun setTaskDone(task: Task, isTaskDone: Boolean) {
+        store.dispatch {
+            val newTasks = ArrayList<Task>(it.tasks!!)
+            val newTaskIndex = newTasks.indexOf(task)
+            newTasks.removeAt(newTaskIndex)
+            newTasks.add(newTaskIndex, task.copy(isDone = true))
 
+            it.mutate<MyListMutableState>().apply {
+                tasks = newTasks
+            }
+        }
     }
 
     fun onTaskClick(task: Task) {}

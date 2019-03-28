@@ -35,6 +35,7 @@ abstract class TaskItem : EpoxyModelWithHolder<TaskItem.Holder>() {
         holder.doneCheckBox.setOnCheckedChangeListener { _, isChecked -> onCheckedChanged(isChecked) }
         holder.taskName.text = name
         holder.taskDescription.text = description
+        holder.taskDescription.visibility = if(description.isNullOrEmpty()) View.GONE else View.VISIBLE
         super.bind(holder)
     }
 

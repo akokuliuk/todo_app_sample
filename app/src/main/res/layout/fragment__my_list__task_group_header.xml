@@ -3,14 +3,18 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:orientation="vertical"
              android:layout_width="match_parent"
-             android:layout_height="30dp"
-             android:background="@android:color/darker_gray">
+             android:layout_height="wrap_content"
+             android:paddingTop="8dp"
+             android:paddingBottom="8dp">
 
     <TextView
             android:id="@+id/task_group_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:paddingStart="17dp"
             android:layout_gravity="center_vertical"
+            android:textColor="@color/my_list__item_group_text_color"
             tools:text="Task group"/>
 
 </FrameLayout>

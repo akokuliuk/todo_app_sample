@@ -48,6 +48,7 @@ class RemoteTaskSource @Inject constructor(
         .serverUrl(BuildConfig.API_URL)
         .build()
 
+
     suspend fun loadTasks(): List<Task> {
         return suspendCancellableCoroutine {
             apolloClient.query(

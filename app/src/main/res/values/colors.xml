@@ -2,7 +2,12 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#587bf6</color>
 
+    <color name="common__label_color">#637381</color>
     <color name="my_list__background_color">#f5f6f7</color>
+    <color name="my_list__header_text_color">#212b36</color>
+    <color name="my_list__item_group_text_color">#bf212b36</color>
+    <color name="my_list__item_name_color">#212b36</color>
+    <color name="my_list__item_description_color">#bf212b36</color>
 </resources>

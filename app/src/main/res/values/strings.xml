@@ -4,5 +4,6 @@
     <string name="screen__my_list__no_tasks_label">There are no tasks for today</string>
     <string name="screen__my_list__active_tasks_header">MY TASKS FOR TODAY</string>
     <string name="screen__my_list__completed_tasks_header">ALREADY DONE</string>
+    <string name="screen__my_list__header">My Tasks</string>
 
 </resources>

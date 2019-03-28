@@ -14,7 +14,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
 import androidx.test.internal.runner.junit4.statement.UiThreadStatement
 import androidx.test.rule.ActivityTestRule
-import org.hamcrest.CoreMatchers.not
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -32,7 +31,10 @@ class MyListFragmentTest {
 
     @Before
     fun runMyListFragment() {
-        fragment = MyListFragment()
+        fragment = MyListFragment().apply {
+            isInStubMode = true
+        }
+
         UiThreadStatement.runOnUiThread {
             activityRule.activity.supportFragmentManager
                 .beginTransaction()
@@ -90,7 +92,7 @@ class MyListFragmentTest {
     }
 
     @Test
-    fun showsBothTypeOfTasks(){
+    fun showsBothTypeOfTasks() {
         updateState(
             MyListMutableState(
                 tasks = listOf(
