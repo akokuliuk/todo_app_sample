@@ -35,7 +35,8 @@ class MyListFragment : FluxFragment<MyListViewModel, MyListComponent>() {
         super.onViewCreated(view, savedInstanceState)
         taskList = view.findViewById(R.id.task_list)
         noTasksLabel = view.findViewById(R.id.no_tasks_label_layout)
-        controller = SimpleController()
+        if (!this::controller.isInitialized)
+            controller = SimpleController()
         taskList.setController(controller)
 
         //TODO: For degub purpose only

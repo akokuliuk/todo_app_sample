@@ -8,7 +8,7 @@ import javax.inject.Singleton
 
 //TODO: Should be exposed with interface
 @Singleton
-class AuthenticationLocalStore @Inject constructor(val todoApp: TodoApp) {
+class AuthenticationLocalStore @Inject constructor(todoApp: TodoApp) {
     private val preferences = todoApp.getSharedPreferences("api_token_store", Context.MODE_PRIVATE)
     private var cachedToken: String? = null
 

@@ -38,7 +38,7 @@ class RemoteTaskSource @Inject constructor(
                     it.proceed(
                         it.request().newBuilder().addHeader(
                             "Authorization",
-                            authenticationLocalStore.getToken()
+                            authenticationLocalStore.getToken()!!
                         ).build()
                     )
                 }
@@ -59,7 +59,16 @@ class RemoteTaskSource @Inject constructor(
                 }
 
                 override fun onResponse(response: Response<AllTasksQuery.Data>) {
-                    response.data()?.allTasks()?.map { item -> Task(item.id(), item.name(), item.note(), item.isDone) }
+                    it.resume(
+                        response.data()?.allTasks()?.map { item ->
+                            Task(
+                                item.id(),
+                                item.name(),
+                                item.note(),
+                                item.isDone
+                            )
+                        }.orEmpty()
+                    )
                 }
 
             })
