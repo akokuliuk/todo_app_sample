@@ -21,7 +21,6 @@ import kotlin.coroutines.resumeWithException
 @Reusable
 class AuthenticationSource @Inject constructor() {
 
-    //TODO: Must be exposed through DI
     private val apolloClient =
         ApolloClient
             .builder()

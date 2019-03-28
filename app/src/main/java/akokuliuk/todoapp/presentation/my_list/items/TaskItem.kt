@@ -18,7 +18,7 @@ abstract class TaskItem : EpoxyModelWithHolder<TaskItem.Holder>() {
     lateinit var name: String
 
     @EpoxyAttribute
-    lateinit var description: String
+    var description: String? = null
 
     @EpoxyAttribute
     var done: Boolean? = null

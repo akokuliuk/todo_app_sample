@@ -3,6 +3,7 @@ package akokuliuk.todoapp.presentation.my_list
 import akokuliuk.todoapp.R
 import akokuliuk.todoapp.di.applicationComponent
 import akokuliuk.todoapp.domain.models.Task
+import akokuliuk.todoapp.presentation.add_task_internal.AddTaskInternalFragment
 import akokuliuk.todoapp.presentation.base.FluxFragment
 import akokuliuk.todoapp.presentation.my_list.items.TaskGroupHeader_
 import akokuliuk.todoapp.presentation.my_list.items.TaskItem_
@@ -36,6 +37,15 @@ class MyListFragment : FluxFragment<MyListViewModel, MyListComponent>() {
         noTasksLabel = view.findViewById(R.id.no_tasks_label_layout)
         controller = SimpleController()
         taskList.setController(controller)
+
+        //TODO: For degub purpose only
+        view.findViewById<View>(R.id.add_task).setOnClickListener {
+            activity!!.supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_frame, AddTaskInternalFragment())
+                .addToBackStack("add_task")
+                .commit()
+        }
     }
 
     /**
@@ -52,7 +62,10 @@ class MyListFragment : FluxFragment<MyListViewModel, MyListComponent>() {
             }
 
             state.tasks?.filter { it.isDone }.takeIf { !it.isNullOrEmpty() }?.let {
-                attachTaskGroup("completed_tasks", resources.getString(R.string.screen__my_list__completed_tasks_header))
+                attachTaskGroup(
+                    "completed_tasks",
+                    resources.getString(R.string.screen__my_list__completed_tasks_header)
+                )
                 it.forEach { task -> attachTask(task) }
             }
         }

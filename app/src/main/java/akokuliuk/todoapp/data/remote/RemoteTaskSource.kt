@@ -10,8 +10,11 @@ import com.apollographql.apollo.exception.ApolloException
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.suspendCancellableCoroutine
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import schema.AllTasksQuery
+import schema.CreateTaskMutation
 import javax.inject.Inject
+import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 
@@ -38,7 +41,9 @@ class RemoteTaskSource @Inject constructor(
                             authenticationLocalStore.getToken()
                         ).build()
                     )
-                }.build()
+                }
+                .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .build()
         )
         .serverUrl(BuildConfig.API_URL)
         .build()
@@ -48,6 +53,7 @@ class RemoteTaskSource @Inject constructor(
             apolloClient.query(
                 AllTasksQuery.builder().build()
             ).enqueue(object : ApolloCall.Callback<AllTasksQuery.Data>() {
+
                 override fun onFailure(e: ApolloException) {
                     it.resumeWithException(e)
                 }
@@ -56,6 +62,27 @@ class RemoteTaskSource @Inject constructor(
                     response.data()?.allTasks()?.map { item -> Task(item.id(), item.name(), item.note(), item.isDone) }
                 }
 
+            })
+        }
+    }
+
+    suspend fun createTask(task: Task): Unit {
+        return suspendCancellableCoroutine {
+            apolloClient.mutate(
+                CreateTaskMutation.builder()
+                    .taskName(task.name)
+                    .taskNote(task.note ?: "")
+                    .isDone(task.isDone)
+                    .build()
+            ).enqueue(object : ApolloCall.Callback<CreateTaskMutation.Data>() {
+
+                override fun onFailure(e: ApolloException) {
+                    it.resumeWithException(e)
+                }
+
+                override fun onResponse(response: Response<CreateTaskMutation.Data>) {
+                    it.resume(Unit)
+                }
             })
         }
     }
