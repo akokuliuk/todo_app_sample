@@ -23,6 +23,7 @@ class RemoteTaskSource @Inject constructor(
     private val authenticationLocalStore: AuthenticationLocalStore,
     private val authenticationSource: AuthenticationSource
 ) {
+
     //TODO: Must be exposed through DI
     private val apolloClient = ApolloClient.builder()
         .okHttpClient(
@@ -47,7 +48,6 @@ class RemoteTaskSource @Inject constructor(
         )
         .serverUrl(BuildConfig.API_URL)
         .build()
-
 
     suspend fun loadTasks(): List<Task> {
         return suspendCancellableCoroutine {

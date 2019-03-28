@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProviders
  */
 object ViewModelFactory {
 
-
     fun <T : ViewModel> provideViewModel(
         activity: FragmentActivity,
         viewModelClass: Class<T>,
@@ -34,7 +33,6 @@ object ViewModelFactory {
             }
         }
     }
-
 
     fun <T : ViewModel> provideViewModel(
         fragment: Fragment,

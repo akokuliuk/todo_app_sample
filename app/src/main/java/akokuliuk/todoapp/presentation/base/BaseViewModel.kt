@@ -15,7 +15,6 @@ abstract class BaseViewModel : ViewModel(), CoroutineScope, LifecycleObserver {
 
     private val job = Job()
 
-
     override fun onCleared() {
         job.cancel()
         super.onCleared()

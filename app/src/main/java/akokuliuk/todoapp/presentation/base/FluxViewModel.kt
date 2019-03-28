@@ -18,7 +18,6 @@ abstract class FluxViewModel<T> : BaseViewModel() {
     val stateObservable: Flowable<T> get() = RxStores.states(store).toFlowable(BackpressureStrategy.LATEST)
     val lifecycleDisposable = CompositeDisposable()
 
-
     fun bindState(block: (Flowable<T>) -> Disposable) {
         if (!isInStubMode) {
             lifecycleDisposable.add(block(stateObservable))

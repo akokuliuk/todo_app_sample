@@ -1,2 +1,0 @@
-package akokuliuk.todoapp.data
-
