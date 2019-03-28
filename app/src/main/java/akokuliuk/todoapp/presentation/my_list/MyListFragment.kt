@@ -39,7 +39,7 @@ class MyListFragment : FluxFragment<MyListViewModel, MyListComponent>() {
             controller = SimpleController()
         taskList.setController(controller)
 
-        //TODO: For degub purpose only
+        //TODO: For debug purpose only
         view.findViewById<View>(R.id.add_task).setOnClickListener {
             activity!!.supportFragmentManager
                 .beginTransaction()
