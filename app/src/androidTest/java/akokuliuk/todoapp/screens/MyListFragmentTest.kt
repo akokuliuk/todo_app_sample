@@ -30,7 +30,7 @@ class MyListFragmentTest {
     private lateinit var fragment: MyListFragment
 
     @Before
-    fun runMyListFragment() {
+    fun run_my_list_fragment() {
         fragment = MyListFragment().apply {
             isInStubMode = true
         }
@@ -44,7 +44,7 @@ class MyListFragmentTest {
     }
 
     @Test
-    fun handleNoLabelState() {
+    fun handle_no_label_state() {
         updateState(MyListMutableState(true))
         onView(withId(R.id.no_tasks_label)).check(matches(isDisplayed()))
         updateState(MyListMutableState(false))
@@ -52,7 +52,7 @@ class MyListFragmentTest {
     }
 
     @Test
-    fun showsActiveTasks() {
+    fun shows_active_tasks() {
         updateState(
             MyListMutableState(
                 tasks = listOf(
@@ -72,7 +72,7 @@ class MyListFragmentTest {
     }
 
     @Test
-    fun showsCompletedTasks() {
+    fun shows_completed_tasks() {
         updateState(
             MyListMutableState(
                 tasks = listOf(
@@ -92,7 +92,7 @@ class MyListFragmentTest {
     }
 
     @Test
-    fun showsBothTypeOfTasks() {
+    fun shows_both_type_of_tasks() {
         updateState(
             MyListMutableState(
                 tasks = listOf(

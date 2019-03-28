@@ -71,7 +71,6 @@ class RemoteTaskSource @Inject constructor(
                         }.orEmpty()
                     )
                 }
-
             })
         }
     }

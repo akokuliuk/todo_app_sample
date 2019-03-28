@@ -8,7 +8,7 @@ class BaseScreenStateTest {
 
     @Test
     fun mutateCreatesNewInstance() {
-        MyListMutableState(false, null).checkMutation()
+        MyListMutableState().checkMutation()
     }
 
 }

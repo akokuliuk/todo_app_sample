@@ -11,7 +11,7 @@ import org.mockito.Mockito.*
 class StateEventTest{
 
     @Test
-    fun handleMethodCanBeExecutedOnlyOnce(){
+    fun handle_method_can_be_executed_only_once(){
         val event = StateEvent("Hello")
         val handler = Mockito.spy({_: String -> true})
         event.handle(handler)

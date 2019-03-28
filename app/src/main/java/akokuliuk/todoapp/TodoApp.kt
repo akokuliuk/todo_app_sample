@@ -5,6 +5,8 @@ import akokuliuk.todoapp.di.DaggerApplicationComponent
 import android.app.Application
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 
 @Module
 class TodoApp : Application() {

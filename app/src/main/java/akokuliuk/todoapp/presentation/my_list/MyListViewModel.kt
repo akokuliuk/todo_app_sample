@@ -25,6 +25,7 @@ class MyListViewModel @Inject constructor(
             }
         }
 
+        //TODO: Must be exposed to the command and be cancelable
         launch {
             val loadedTasks = getTasksUseCase.getTasks()
             store.dispatch {
@@ -35,7 +36,6 @@ class MyListViewModel @Inject constructor(
             }
         }
     }
-
 
     //TODO: For debug purpose only
     fun setTaskDone(task: Task, isTaskDone: Boolean) {
